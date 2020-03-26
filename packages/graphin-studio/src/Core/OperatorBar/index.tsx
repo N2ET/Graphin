@@ -15,6 +15,23 @@ const OperatorBar: React.FC<OperatorBarProps> = props => {
 
     const menus = [
         {
+            id: 'addSkillNode',
+            name: '添加节点',
+            icon: 'plus-square',
+            onClick: () => {
+                dispatch({
+                    type: 'graph/drawer',
+                    payload: {
+                        title: '添加节点',
+                        type: 'addSkillNodes',
+                        visible: true,
+                        width: 450,
+                        closeMask: true,
+                    },
+                });
+            },
+        },
+        {
             id: 'addNode',
             name: '添加实体',
             icon: 'file-add',

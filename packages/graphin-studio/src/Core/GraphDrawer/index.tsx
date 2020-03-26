@@ -8,6 +8,8 @@ import DiffusePanel from '../DiffusePanel';
 import './index.less';
 import { GraphDrawerProps } from './interface';
 
+import AddSkillNodes from '../SkillDrawer/AddNodes';
+
 const getComponent = (component: string, props: GraphDrawerProps) => {
     switch (component) {
         case 'setting':
@@ -20,6 +22,9 @@ const getComponent = (component: string, props: GraphDrawerProps) => {
             return <EdgeAttr {...props} />;
         case 'diffuse':
             return <DiffusePanel {...props} />;
+
+        case 'addSkillNodes':
+            return <AddSkillNodes {...props} />;
         default:
             return null;
     }
