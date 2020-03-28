@@ -1,11 +1,23 @@
+import { Dispatch, Node, GrapheneState } from '../../types';
 export interface AddNodesProps {
     [key: string]: any
 };
 
 export interface NormalProps {
-    [key: string]: any
+    dispatch?: Dispatch,
+    node?: Node,
+    // parentNode?: Node,
+    state: GrapheneState
 };
 
-export enum NodeTypes {
-    node
+
+export interface NodeType {
+    name: string,
+    nodeType: string
 };
+
+export interface NormalState {
+    nodeTypes: NodeType[],
+    node: Node
+};
+

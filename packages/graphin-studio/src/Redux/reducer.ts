@@ -73,6 +73,27 @@ const reducer = (state: GrapheneState, action: { type: string; payload: { [key: 
                 .$set('graphRef', payload)
                 .value();
 
+
+        case 'graph/addSkillNodes':
+
+            let node =payload.nodes[0];
+            let edges = node.data.data.parentID ? [{
+                target: node.id,
+                source: node.data.data.parentID,
+                data: {
+                    target: node.id,
+                    source: node.data.data.parentID
+                } 
+            }]: [];
+
+            return updateChain(state)
+                .$set('data', {
+                    nodes: [...state.data.nodes, ...payload.nodes],
+                    edges: [...state.data.edges, ...edges]
+                })
+                .value();
+
+
         default:
             return state;
     }

@@ -28,6 +28,13 @@ export interface Node {
         label?: string;
         /** 节点属性 */
         properties?: { [key: string]: any }[]; // eslint-disable-line
+
+        data?: {
+            description?: string,
+            parentNode?: Node,
+            parentID?: string,
+            [key: string]: any
+        }
     };
     /** 唯一标示ID，必选 */
     id: string;
