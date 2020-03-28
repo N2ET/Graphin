@@ -9,6 +9,7 @@ import './index.less';
 import { GraphDrawerProps } from './interface';
 
 import AddSkillNodes from '../SkillDrawer/AddNodes';
+import SkillSetting from '../SkillDrawer/Setting/index';
 
 const getComponent = (component: string, props: GraphDrawerProps) => {
     switch (component) {
@@ -25,6 +26,9 @@ const getComponent = (component: string, props: GraphDrawerProps) => {
 
         case 'addSkillNodes':
             return <AddSkillNodes {...props} />;
+        case 'skillSetting':
+            return <SkillSetting {...props} />
+
         default:
             return null;
     }

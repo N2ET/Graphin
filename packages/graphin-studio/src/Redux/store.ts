@@ -1,4 +1,4 @@
-import { GrapheneState } from '../types';
+import { GrapheneState, NodeType } from '../types';
 import Storage from '../Service/Storage';
 
 const storage = new Storage('graphin-studio');
@@ -12,10 +12,27 @@ if (!storage.get('config')) {
     });
 }
 
+const nodeTypes : NodeType[] = [
+    {
+        nodeType: 'node',
+        name: '默认类型（node）'
+    }, {
+        nodeType: 'skill',
+        name: '技能（skill）'
+    }, {
+        nodeType: 'task',
+        name: '任务（task）'
+    }, {
+        nodeType: 'set',
+        name: '集合（set）'
+    }
+];
+
 const initialState: GrapheneState = {
     data: {
         nodes: [],
         edges: [],
+        nodeTypes: nodeTypes
     },
     layout: {
         name: 'force',
@@ -45,6 +62,11 @@ const initialState: GrapheneState = {
     graphRef: {
         current: null,
     },
+
+    styles: {
+        graphOptions: {},
+        nodeStyles: {}
+    }
 };
 
 export default initialState;

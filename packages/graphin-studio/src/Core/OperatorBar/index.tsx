@@ -17,7 +17,7 @@ const OperatorBar: React.FC<OperatorBarProps> = props => {
         {
             id: 'addSkillNode',
             name: '添加节点',
-            icon: 'plus-square',
+            icon: 'file-add',
             onClick: () => {
                 dispatch({
                     type: 'graph/drawer',
@@ -30,6 +30,29 @@ const OperatorBar: React.FC<OperatorBarProps> = props => {
                     },
                 });
             },
+        },
+        
+        {
+            id: 'skillSetting',
+            name: '设置',
+            icon: 'setting',
+            onClick: () => {
+                dispatch({
+                    type: 'graph/drawer',
+                    payload: {
+                        title: '设置',
+                        type: 'skillSetting',
+                        visible: true,
+                        width: 350,
+                        closeMask: true,
+                    },
+                });
+            },
+        },
+
+        {
+            id: 'divider0',
+            isDivider: true,
         },
         {
             id: 'addNode',
@@ -153,6 +176,7 @@ const OperatorBar: React.FC<OperatorBarProps> = props => {
                 });
             },
         },
+
     ];
     return (
         <div>

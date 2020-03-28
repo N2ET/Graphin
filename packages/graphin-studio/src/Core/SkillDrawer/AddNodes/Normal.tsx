@@ -1,32 +1,33 @@
 import React, { useState } from 'react';
-import { NormalProps, NormalState, NodeType } from '../types';
+import { NormalProps, NormalState } from '../types';
 import { Select, Input, Button, Divider, Icon } from 'antd';
 // import { PlusOutlined } from '@ant-design/icons';
 import { Item } from '@com';
-import { NodeData } from '../../../types';
+import { NodeData, NodeType } from '../../../types';
 
 const SelectOption = Select.Option;
 const { TextArea } = Input;
 
-const nodeTypes : NodeType[] = [
-    {
-        nodeType: 'node',
-        name: '默认类型（node）'
-    }, {
-        nodeType: 'skill',
-        name: '技能（skill）'
-    }, {
-        nodeType: 'task',
-        name: '任务（task）'
-    }, {
-        nodeType: 'set',
-        name: '集合（set）'
-    }
-];
+// const nodeTypes : NodeType[] = [
+//     {
+//         nodeType: 'node',
+//         name: '默认类型（node）'
+//     }, {
+//         nodeType: 'skill',
+//         name: '技能（skill）'
+//     }, {
+//         nodeType: 'task',
+//         name: '任务（task）'
+//     }, {
+//         nodeType: 'set',
+//         name: '集合（set）'
+//     }
+// ];
 
 const getNodeData = function (data: any = {}) : NormalState {
 
-    let id = data?.id || new Date().getTime().toString();
+    let nodeData = data.nodeData;
+    let id = nodeData?.id || new Date().getTime().toString();
 
     return {
         node: {
@@ -40,9 +41,9 @@ const getNodeData = function (data: any = {}) : NormalState {
                     parentID: ''
                 },
                 properties: []
-            }, data)
+            }, data.nodeData || {})
         },
-        nodeTypes: JSON.parse(JSON.stringify(nodeTypes))
+        nodeTypes: JSON.parse(JSON.stringify(data.nodeTypes))
     }
 }
 
@@ -51,7 +52,9 @@ const Normal: React.FC<NormalProps> = (props) => {
     const { dispatch } = props; 
     const graphState = props.state; 
 
-    let [ state, setState ] = useState<NormalState>(getNodeData());
+    let [ state, setState ] = useState<NormalState>(getNodeData({
+        nodeTypes: graphState.data.nodeTypes
+    }));
 
     const handleClick = () => {
         dispatch({
@@ -62,7 +65,10 @@ const Normal: React.FC<NormalProps> = (props) => {
         });
 
         setState(getNodeData({
-            type: state.node.data.type
+            nodeData: {
+                type: state.node.data.type
+            },
+            nodeTypes: graphState.data.nodeTypes
         }));
     };
 
@@ -125,7 +131,7 @@ const Normal: React.FC<NormalProps> = (props) => {
                                 ...newState
                             })
                         } }>
-                    { nodeTypes.map(item => {
+                    { graphState.data.nodeTypes.map(item => {
                         const { nodeType, name } = item;
                         return (
                             <SelectOption key={ nodeType } value={ nodeType }>{ name }</SelectOption>

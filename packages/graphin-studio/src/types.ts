@@ -1,4 +1,5 @@
 import { Graph } from '@antv/graphin';
+import { GraphOptions } from '@antv/g6';
 
 export interface NodeLayoutType {
     /** 节点度数 */
@@ -31,7 +32,7 @@ export interface Node {
 
         data?: {
             description?: string,
-            parentNode?: Node,
+            // parentNode?: Node,
             parentID?: string,
             [key: string]: any
         }
@@ -97,6 +98,7 @@ export interface EdgeModel {
 export interface GraphData {
     nodes: Node[];
     edges: Edge[];
+    nodeTypes: NodeType[]
 }
 export interface Layout {
     name: string;
@@ -130,6 +132,11 @@ export interface ToolBarProps {
     direction: 'horizontal' | 'vertical';
 }
 
+export interface NodeType {
+    name: string;
+    nodeType: string;
+}
+
 export interface GrapheneState {
     data: GraphData;
     layout: Layout;
@@ -145,6 +152,11 @@ export interface GrapheneState {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         current: any;
     };
+
+    styles: {
+        graphOptions?: Partial<GraphOptions>,
+        nodeStyles?: any
+    }
 }
 
 export interface GraphProps {

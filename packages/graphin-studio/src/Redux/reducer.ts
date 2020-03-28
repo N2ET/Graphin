@@ -89,7 +89,8 @@ const reducer = (state: GrapheneState, action: { type: string; payload: { [key: 
             return updateChain(state)
                 .$set('data', {
                     nodes: [...state.data.nodes, ...payload.nodes],
-                    edges: [...state.data.edges, ...edges]
+                    edges: [...state.data.edges, ...edges],
+                    nodeTypes: [...state.data.nodeTypes]
                 })
                 .value();
 
