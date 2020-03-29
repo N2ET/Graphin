@@ -94,6 +94,19 @@ const reducer = (state: GrapheneState, action: { type: string; payload: { [key: 
                 })
                 .value();
 
+            case 'graph/updateGraphOptions':
+                return updateChain(state)
+                    .$set('styles.graphOptions', payload.options)
+                    .value();
+
+            case 'graph/updateNodeTypeOptions':
+                return updateChain(state)
+                    .$set('styles.nodeStyles', {
+                        ...state.styles.nodeStyles,
+                        [payload.nodeType]: payload.options
+                    })
+                    .value();
+
 
         default:
             return state;

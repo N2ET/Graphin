@@ -47,7 +47,7 @@ const OnlyGraphinReady = props => {
 const Graphene = () => {
     // const graphRef = useRef(null) as any; // eslint-disable-line
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { data, layout, toolbar, graphRef } = state as GrapheneState;
+    const { data, layout, toolbar, graphRef, styles } = state as GrapheneState;
 
     return (
         <Layout>
@@ -58,7 +58,7 @@ const Graphene = () => {
                 </OnlyGraphinReady>
             </Side>
             <Main>
-                <Graph data={data} layout={layout} toolbar={toolbar} dispatch={dispatch} store={state} />
+                <Graph data={data} layout={layout} toolbar={toolbar} dispatch={dispatch} store={state} styles={styles} />
                 <OnlyGraphinReady graphRef={graphRef}>
                     <GraphDrawer dispatch={dispatch} state={state} />
                     <GraphModal dispatch={dispatch} state={state} />

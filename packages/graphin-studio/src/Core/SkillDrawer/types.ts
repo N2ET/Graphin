@@ -1,6 +1,9 @@
 import { Dispatch, Node, GrapheneState, NodeType } from '../../types';
+import { GraphOptions } from '@antv/g6';
 export interface AddNodesProps {
-    [key: string]: any
+    dispatch?: Dispatch;
+    node?: Node;
+    state: GrapheneState;
 };
 
 export interface NormalProps {
@@ -22,6 +25,24 @@ export interface NormalState {
 };
 
 export interface SettingProps {
+    dispatch?: Dispatch;
+    state: GrapheneState;
+    // graphOptions: Partial<GraphOptions>;
+}
 
+export interface GraphSettingProps {
+    dispatch?: Dispatch;
+    state: GrapheneState;
+    // graphOptions: Partial<GraphOptions>
+}
+
+export interface GraphSettingState {
+    errMsg: string,
+    optionsText: string
+}
+
+export interface NodeTypeStyleSetting {
+    dispatch?: Dispatch;
+    state: GrapheneState;   
 }
 

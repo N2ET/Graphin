@@ -43,7 +43,7 @@ const OperatorBar: React.FC<OperatorBarProps> = props => {
                         title: '设置',
                         type: 'skillSetting',
                         visible: true,
-                        width: 350,
+                        width: 450,
                         closeMask: true,
                     },
                 });

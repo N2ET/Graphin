@@ -41,7 +41,9 @@ const getNodeData = function (data: any = {}) : NormalState {
                     parentID: ''
                 },
                 properties: []
-            }, data.nodeData || {})
+            }, data.nodeData || {}),
+            shape: 'circle',
+            label: ''
         },
         nodeTypes: JSON.parse(JSON.stringify(data.nodeTypes))
     }
@@ -112,6 +114,7 @@ const Normal: React.FC<NormalProps> = (props) => {
                     
                     // state如果是对象时，setState更新要重新深copy一个对象？？还是能通过.修改其中一个值
                     state.node.data.label = e.target.value;
+                    state.node.label = e.target.value;
                     setState({
                         ...state
                     });

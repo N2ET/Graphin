@@ -50,6 +50,8 @@ export interface Node {
     layout?: NodeLayoutType;
     /** 节点度数 */
     degree?: number;
+    
+    [key: string]: any;
 }
 
 export interface Edge {
@@ -171,6 +173,8 @@ export interface GraphProps {
     /** 全局的dispatch触发函数 */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     dispatch: any;
+
+    styles: GrapheneState['styles']
 }
 
 export interface GrapheneProps {

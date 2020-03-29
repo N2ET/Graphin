@@ -20,7 +20,7 @@ import '@antv/graphin-components/dist/index.css';
 
 const Graphene = (props: GraphProps) => {
     const graphRef = useRef(null) as any; // eslint-disable-line
-    const { dispatch, data, layout, toolbar, store } = props;
+    const { dispatch, data, layout, toolbar, store,  styles} = props;
 
     useGraphEvents(store, graphRef, dispatch);
     React.useEffect(() => {
@@ -31,8 +31,32 @@ const Graphene = (props: GraphProps) => {
         // 将graph实例传给全局
     }, []);
     // eslint-disable-next-line no-console
+
+    console.log(extend);
+
+    let count = 0;
+    let newData = data;
+    let nodes = data.nodes.map(node => {
+        let type = node.data.type;
+        
+        if (styles.nodeStyles[type]) {
+            Object.assign(node, styles.nodeStyles[type]);
+            count ++;
+        }
+
+        return node;
+    });
+
+    if (count) {
+        newData = {
+            ...data,
+            nodes
+        };
+    }
+    
     return (
-        <Graphin data={data} layout={layout} ref={graphRef} extend={extend}>
+        <Graphin data={ newData } layout={layout} ref={graphRef} extend={extend}
+            options={styles.graphOptions}>
             {/** 官方组件 */}
             <Toolbar
                 direction={toolbar.direction}
