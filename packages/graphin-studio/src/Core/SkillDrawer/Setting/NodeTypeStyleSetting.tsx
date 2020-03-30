@@ -41,7 +41,14 @@ const Setting: React.FC<NodeTypeStyleSetting> = props => {
 
         let textKey = getTextKey(item.nodeType);
         let errKey = getErrMsgKey(item.nodeType);
-        initState[textKey] = '';
+
+        let style = props.state.styles.nodeStyles[item.nodeType];
+
+        if (style) {
+            style = JSON.stringify(style, null, 4);
+        }
+
+        initState[textKey] = style || '';
         initState[errKey] = '';
     });
 
